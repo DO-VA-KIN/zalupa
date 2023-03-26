@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfP"
         mc:Ignorable="d"
-        Title="Manual" WindowStartupLocation="CenterScreen" Height="450" Width="800" Icon="/Images/Icon1.jpg">
+        Title="Инструкция" FontSize="16" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Height="300" Width="500" Icon="/Images/Icon1.jpg">
     <Grid>
-        
+        <Button x:Name="BtnMove" Content="Далее" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,5" Click="BtnMove_Click"/>
+        <TextBlock TextWrapping="Wrap" Margin="5,5,5,40" Text ="Положите перед собой руки ладонями вниз. Левую руку выпрямите, а 
+правую сожмите в кулак. После звукового сигнала (и/или команды старт на 
+экране)  пальцами левой руки нажмите левую клавишу «Shift»  на клавиатуре 
+и положите руку  перед собой, сжав в кулак. Одновременно с этим разожмите 
+правую ладонь и  пальцем нажмите правую клавишу  «Shift» на клавиатуре. 
+Далее чередуйте движения (30 сек) до звукового сигнала. Нажатия должны 
+выполняться с максимально возможным темпом.  При этом, руки в локтевых 
+суставах должны быть неподвижны."/>
     </Grid>
 </Window>

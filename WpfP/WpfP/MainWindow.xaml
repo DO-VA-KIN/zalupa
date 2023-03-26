@@ -7,12 +7,12 @@
         xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
         xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" x:Class="WpfP.MainWindow"
         mc:Ignorable="d"
-        x:Name="Window1" Title="КГМУ" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Height="450" Width="800" Loaded="Window_Loaded" Icon="/Images/Icon1.jpg">
+        x:Name="Window1" Title="КГМУ" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" Height="450" Width="800" Loaded="Window_Loaded" Icon="/Images/Icon1.jpg">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height ="4*"/>
-            <RowDefinition Height ="0.5*"/>
-            <RowDefinition Height ="0.5*"/>
+            <RowDefinition Height ="0.5*" MaxHeight="50"/>
+            <RowDefinition Height ="0.5*" MaxHeight="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -21,14 +21,14 @@
         </Grid.ColumnDefinitions>
 
 
-        <DVC:Chart x:Name="DVCHistogram" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-            <DVC:ColumnSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding}" />
+        <DVC:Chart x:Name="DVCHistogram" Margin="0,0,-110,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <DVC:ColumnSeries DependentValuePath="Value" IndependentValuePath="Key" DataContext="{Binding}" ItemsSource="{Binding}" />
         </DVC:Chart>
 
         <ProgressBar x:Name="PBProgress" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,10"/>
         <Button x:Name="BtnNewUser" FontSize="15" Content="Новый пользователь" Grid.Column="0" Grid.Row="2" Margin="25,5,25,10" Click="BtnNewUser_Click"/>
         <Button x:Name="BtnStart" FontSize="15" Content="Начать" Grid.Column="1" Grid.Row="2" Margin="25,5,25,10" Click="BtnStart_Click"/>
-        <Button x:Name="BtnSave" FontSize="15" Content="Сохранить" Grid.Column="2" Grid.Row="2" Margin="25,5,25,10"/>
+        <Button x:Name="BtnSave" FontSize="15" Content="Сохранить" Grid.Column="2" Grid.Row="2" Margin="25,5,25,10" Click="BtnSave_Click"/>
 
 
 

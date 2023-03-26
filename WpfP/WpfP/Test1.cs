@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,21 +19,66 @@ namespace WpfP
         public string Surname { get; set; }
         public string SecondName { get; set; }
         public ushort Birthday { get; set; }
+        public bool IsEmpty()
+        { return Name == null && Surname == null && SecondName == null; }
     }
     public struct Report
     {
+        const double time = 30;
         public ushort LeftSuccess;
         public ushort RightSuccess;
- 
         public ushort LeftError;
         public ushort RightError;
-    }
+        public TimeSpan TimeCorrect;
 
-    public class Result
-    {
-        public string name = "21";
-        public int value = 0;
-    }
+        public double GetTemp()
+        { 
+            //if(LeftSuccess + LeftError + RightSuccess + RightError == 0)
+            //    return 0;
+            return time / (LeftSuccess + LeftError + RightSuccess + RightError);
+        }
+        public double GetSuccessTemp()
+        {
+            //if (LeftSuccess + RightSuccess == 0)
+            //    return 0;
+            return time / (LeftSuccess + RightSuccess);
+        }
+        public double GetLeftTemp()
+        {
+            //if (LeftSuccess + LeftError == 0)
+            //    return 0;
+            return time / (LeftSuccess + LeftError);
+        }
+        public double GetLeftSuccessTemp()
+        {
+            //if (LeftSuccess == 0)
+            //    return 0;
+            return time / (LeftSuccess);
+        }
+        public double GetRightTemp()
+        {
+            //if (RightSuccess + RightError == 0)
+            //    return 0;
+            return time / (RightSuccess + RightError);
+        }
+        public double GetRightSuccessTemp()
+        {
+            //if (RightSuccess == 0)
+            //    return 0;
+            return 30 / (RightSuccess);
+        }
+        public double GetRecip()
+        {
+            //if(GetLeftTemp() == 0)
+            //    return 0;
+            return GetRightTemp() / GetLeftTemp();
+        }
+        public double GetTimeCorrectSec()
+        { return TimeCorrect.TotalMilliseconds / 1000; }
+
+        public bool IsEmpty()
+        { return LeftSuccess == 0 && RightSuccess == 0 && LeftError == 0 && RightError == 0; }
+    }            
 
 
 
@@ -41,23 +87,35 @@ namespace WpfP
         public MainWindow Window { get; set; }
         public User User1 { get; set; }
         private Report Report1 = new Report();
+        public Report GetReport()
+        { return Report1; }
 
         private System.Windows.Threading.DispatcherTimer Timer = new System.Windows.Threading.DispatcherTimer();
         public TimeSpan Time = new TimeSpan(0, 0, 30);
 
         private System.Windows.Threading.DispatcherTimer ReportTimer = new System.Windows.Threading.DispatcherTimer();
-        private TimeSpan ReportInterval = new TimeSpan(0, 0, 1);
+        private TimeSpan ReportInterval = new TimeSpan(0, 0, 3);
         private int Ticks = 0;
 
         private bool FlipFlop = true;
+        private bool Error = false;
+        private TimeSpan TimeError = new TimeSpan(0, 0, 0);
 
         public void StartTest()
         {
-            Report1 = new Report();
+            Report1 = new Report()
+            {
+                LeftSuccess = 1,
+                RightSuccess = 1,
+                LeftError = 1,
+                RightError = 1,
+                TimeCorrect = new TimeSpan(0,0,0)
+            };
             Ticks = 1;
             FlipFlop = false;
 
-            //Window.Topmost = true;
+
+            Window.Topmost = true;
             Window.Disable();
             ReportTimer.Interval = ReportInterval;
             Timer.Interval = Time;
@@ -70,8 +128,8 @@ namespace WpfP
 
         private void ReportTimer_Tick(object sender, EventArgs e)
         {
-            Ticks++;
-            int progress = (int)(ReportInterval.TotalSeconds * 100 * Ticks / Time.TotalSeconds);
+            Ticks += 3;
+            int progress = (int)(ReportInterval.TotalSeconds * 100 * Ticks / ReportInterval.TotalSeconds / Time.TotalSeconds);
             Window.UpdateProgress(progress, Report1);
         }
 
@@ -104,22 +162,44 @@ namespace WpfP
 
             if(e.Key == Key.LeftShift)
             {
-                if (FlipFlop) Report1.LeftSuccess++;
-                else Report1.LeftError++;
+                if (FlipFlop)
+                {
+                    Report1.LeftSuccess++;
+                    if (Error)
+                        Report1.TimeCorrect = new TimeSpan(Report1.TimeCorrect.Add(DateTime.Now.TimeOfDay.Subtract(TimeError)).Ticks / 2);
+                    Error = false;
+                }
+                else
+                {
+                    Report1.LeftError++;
+                    TimeError = DateTime.Now.TimeOfDay;
+                    Error = true;
+                }
             }
             else if (e.Key == Key.RightShift)
             {
-                if (!FlipFlop) Report1.RightSuccess++;
-                else Report1.RightError++;
+                if (!FlipFlop)
+                {
+                    Report1.RightSuccess++;
+                    if (Error)
+                        Report1.TimeCorrect = new TimeSpan(Report1.TimeCorrect.Add(DateTime.Now.TimeOfDay.Subtract(TimeError)).Ticks / 2);
+                    Error = false;
+                }
+                else
+                {
+                    Report1.RightError++;
+                    TimeError = DateTime.Now.TimeOfDay;
+                    Error = true;
+                }
             }
             else
             {
-                if (FlipFlop)
-                    Report1.LeftError++;
+                if (FlipFlop) Report1.LeftError++;
                 else Report1.RightError++;
             }
 
-            FlipFlop = ! FlipFlop;
+            if (!Error)
+                FlipFlop = ! FlipFlop;
         }
 
     }

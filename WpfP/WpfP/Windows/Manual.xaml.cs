@@ -23,5 +23,10 @@ namespace WpfP
         {
             InitializeComponent();
         }
+
+        private void BtnMove_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
     }
 }
