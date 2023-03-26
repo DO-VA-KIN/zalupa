@@ -21,3 +21,7 @@ B:\Projects\Freelance\WpfP\WpfP\obj\Debug\Windows\Registry.baml
 B:\Projects\Freelance\WpfP\WpfP\obj\Debug\WpfP_Content.g.cs
 B:\Projects\Freelance\WpfP\WpfP\bin\Debug\DotNetProjects.DataVisualization.Toolkit.dll
 B:\Projects\Freelance\WpfP\WpfP\obj\Debug\WpfP.csproj.CopyComplete
+B:\Projects\Freelance\WpfP\WpfP\bin\Debug\WpfP.exe.manifest
+B:\Projects\Freelance\WpfP\WpfP\bin\Debug\WpfP.application
+B:\Projects\Freelance\WpfP\WpfP\obj\Debug\WpfP.exe.manifest
+B:\Projects\Freelance\WpfP\WpfP\obj\Debug\WpfP.application
