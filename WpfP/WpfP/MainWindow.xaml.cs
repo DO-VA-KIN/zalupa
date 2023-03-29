@@ -115,6 +115,7 @@ namespace WpfP
                 AddExtension = true,
                 DefaultExt = ".xlsx",
                 ValidateNames = true,
+                OverwritePrompt = false,
                 Filter = "Excel files (*.xlsx)|*.xlsx"
             };
             if (sfd.ShowDialog() == true)
@@ -132,7 +133,7 @@ namespace WpfP
                         int lRow = sh.UsedRange.Rows.Count+1;
                         sh.Cells[lRow, 1] = u.Surname;
                         sh.Cells[lRow, 2] = u.Name;
-                        sh.Cells[lRow, 3] = u.SecondName;
+                        sh.Cells[lRow, 3] = u.Group;
                         sh.Cells[lRow, 4] = u.Birthday;
                         sh.Cells[lRow, 5] = r.GetTemp();
                         sh.Cells[lRow, 6] = r.GetSuccessTemp();
@@ -156,7 +157,7 @@ namespace WpfP
 
                         sh.Cells[1, 1] = "Фамилия";
                         sh.Cells[1, 2] = "Имя";
-                        sh.Cells[1, 3] = "Отчество";
+                        sh.Cells[1, 3] = "Группа";
                         sh.Cells[1, 4] = "Возраст";
                         sh.Cells[1, 5] = "Темп";
                         sh.Cells[1, 6] = "Эффективный темп";
@@ -166,10 +167,11 @@ namespace WpfP
                         sh.Cells[1, 10] = "Эфф. правый темп";
                         sh.Cells[1, 11] = "Время коррекции";
                         sh.Cells[1, 12] = "Коэф. реципрокности";
+                        sh.Cells[1, 13] = "Время";
 
                         sh.Cells[2, 1] = u.Surname;
                         sh.Cells[2, 2] = u.Name;
-                        sh.Cells[2, 3] = u.SecondName;
+                        sh.Cells[2, 3] = u.Group;
                         sh.Cells[2, 4] = u.Birthday;
                         sh.Cells[2, 5] = r.GetTemp();
                         sh.Cells[2, 6] = r.GetSuccessTemp();
@@ -179,6 +181,7 @@ namespace WpfP
                         sh.Cells[2, 10] = r.GetRightSuccessTemp();
                         sh.Cells[2, 11] = r.GetTimeCorrectSec();
                         sh.Cells[2, 12] = r.GetRecip();
+                        sh.Cells[2, 13] = DateTime.Now;
                         wb.SaveAs(sfd.FileName);
                         //wb.Close();
                         exApp.Quit();

@@ -17,10 +17,10 @@ namespace WpfP
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string SecondName { get; set; }
+        public string Group { get; set; }
         public ushort Birthday { get; set; }
         public bool IsEmpty()
-        { return Name == null && Surname == null && SecondName == null; }
+        { return Name == null && Surname == null && Group == null; }
     }
     public struct Report
     {

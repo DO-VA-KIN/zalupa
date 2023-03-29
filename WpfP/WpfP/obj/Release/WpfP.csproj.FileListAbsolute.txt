@@ -19,3 +19,9 @@ B:\Projects\Freelance\WpfP\WpfP\obj\Release\WpfP.csproj.GenerateResource.cache
 B:\Projects\Freelance\WpfP\WpfP\obj\Release\WpfP.csproj.CoreCompileInputs.cache
 B:\Projects\Freelance\WpfP\WpfP\obj\Release\WpfP.exe
 B:\Projects\Freelance\WpfP\WpfP\obj\Release\WpfP.pdb
+B:\Projects\Freelance\WpfP\WpfP\bin\Release\WpfP.exe.manifest
+B:\Projects\Freelance\WpfP\WpfP\bin\Release\WpfP.application
+B:\Projects\Freelance\WpfP\WpfP\bin\Release\DotNetProjects.DataVisualization.Toolkit.dll
+B:\Projects\Freelance\WpfP\WpfP\obj\Release\WpfP.exe.manifest
+B:\Projects\Freelance\WpfP\WpfP\obj\Release\WpfP.application
+B:\Projects\Freelance\WpfP\WpfP\obj\Release\WpfP.csproj.CopyComplete

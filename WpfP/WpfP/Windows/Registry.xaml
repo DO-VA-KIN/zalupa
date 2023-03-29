@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
         <Label FontSize="15" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" Content="Имя"/>
         <Label FontSize="15" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Content="Фамилия"/>
-        <Label FontSize="15" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2" Content="Отчество"/>
+        <Label FontSize="15" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2" Content="Группа"/>
         <Label FontSize="15" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="3" Content="Возраст"/>
         <TextBox x:Name="TBName" FontSize="15" TextAlignment="Center" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="0" Margin="10,25,10,7.5" TextWrapping="Wrap"/>
         <TextBox x:Name="TBSurname" FontSize="15" TextAlignment="Center" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Margin="10,25,10,7.5" TextWrapping="Wrap"/>

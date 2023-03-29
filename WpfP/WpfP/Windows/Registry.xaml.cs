@@ -41,7 +41,7 @@ namespace WpfP
                     {
                         Name = TBName.Text,
                         Surname = TBSurname.Text,
-                        SecondName = TBSecondName.Text,
+                        Group = TBSecondName.Text,
                         Birthday = Convert.ToUInt16(TBBirthday.Text)
                     };
 
