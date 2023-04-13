@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using Timer = System.Threading.Timer;
 
 namespace WpfP
@@ -114,6 +116,14 @@ namespace WpfP
             Ticks = 1;
             FlipFlop = false;
 
+            if (File.Exists(Environment.CurrentDirectory + @"\Sound.mp3"))
+            {
+                MediaPlayer player = new MediaPlayer();
+                player.Open(new Uri(Environment.CurrentDirectory + @"\Sound.mp3"));
+                player.Play();
+                while (player.Position != player.NaturalDuration) { }
+                player.Close();
+            }
 
             Window.Topmost = true;
             Window.Disable();
@@ -144,6 +154,15 @@ namespace WpfP
             Timer.Tick -= Timer_Tick;
             Window.Topmost = false;
             Window.Enable();
+
+            if (File.Exists(Environment.CurrentDirectory + @"\Sound.mp3"))
+            {
+                MediaPlayer player = new MediaPlayer();
+                player.Open(new Uri(Environment.CurrentDirectory + @"\Sound.mp3"));
+                player.Play();
+                while (player.Position != player.NaturalDuration) { }
+                player.Close();
+            }
         }
 
 

@@ -87,14 +87,7 @@ namespace WpfP
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(Environment.CurrentDirectory + @"\Sound.mp3"))
-            {
-                MediaPlayer player = new MediaPlayer();
-                player.Open(new Uri(Environment.CurrentDirectory + @"\Sound.mp3"));
-                player.Play();
-                while (player.Position != player.NaturalDuration) { }
-                player.Close();
-            }
+
             Test.StartTest();
 
         }
